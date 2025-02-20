@@ -1,10 +1,10 @@
 package Bank;
-import java.io.Serializable;
-import javax.swing.DefaultListModel;
 import Exceptions.AccNotFound;
 import Exceptions.InvalidAmount;
 import Exceptions.MaxBalance;
 import Exceptions.MaxWithdraw;
+import java.io.Serializable;
+import javax.swing.DefaultListModel;
 
 public class Bank implements Serializable {
 	/**
@@ -14,7 +14,7 @@ public class Bank implements Serializable {
 	private BankAccount[] accounts= new BankAccount[100];
 	public int addAccount(BankAccount acc)
 	{
-		int i=0;
+		int i;
 		for(i=0;i<100;i++)
 		{
 			if(getAccounts()[i]==null)
@@ -26,7 +26,7 @@ public class Bank implements Serializable {
 		return i;
 	}
 	
-	public int addAccount(String name, double balance, double maxWithLimit )
+	public int addAccount(String name, double balance, double maxWithLimit ) throws Exception
 	{
 		SavingsAccount acc=new SavingsAccount(name, balance, maxWithLimit);
 		return this.addAccount(acc);
@@ -38,7 +38,7 @@ public class Bank implements Serializable {
 		return this.addAccount(acc);
 	}
 	
-	public int addAccount(String name, String  institutionName, double balance, double min_balance)
+	public int addAccount(String name, String  institutionName, double balance, double min_balance) throws Exception
 	{
 		StudentAccount acc= new StudentAccount(name,balance,institutionName);
 		return this.addAccount(acc);
@@ -53,7 +53,7 @@ public class Bank implements Serializable {
 			{
 				break;
 			}
-			if(getAccounts()[i].acc_num.equals(aacountNum))
+			if(getAccounts()[i].getAccNum().equals(aacountNum))
 			{
 				return getAccounts()[i];
 			}
@@ -62,7 +62,7 @@ public class Bank implements Serializable {
 		return null;
 	}
 	
-	public void deposit(String aacountNum, double amt) throws InvalidAmount,AccNotFound
+	public void deposit(String aacountNum, double amt) throws InvalidAmount, AccNotFound, Exception
 	
 	{
 		if(amt<0)
@@ -74,11 +74,7 @@ public class Bank implements Serializable {
 		{
 			throw new AccNotFound("Account Not Found");
 		}
-		if(temp!=null)
-		{
-			temp.deposit(amt);
-			
-		}
+		temp.deposit(amt);
 		
 	}
 	
@@ -101,15 +97,12 @@ public class Bank implements Serializable {
 		{
 			throw new MaxBalance("Insufficient Balance");
 		}
-		if(temp!=null)
-		{
-			temp.withdraw(amt);
-		}
+		temp.withdraw(amt);
 	}
 	
 	public DefaultListModel<String> display()
 	{
-		DefaultListModel<String> list=new DefaultListModel<String>();
+		DefaultListModel<String> list=new DefaultListModel<>();
 		int i;
 //		String type=null;
 	

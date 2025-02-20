@@ -1,32 +1,30 @@
 package GUI;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
+import Data.FileIO;
 import Exceptions.AccNotFound;
 import Exceptions.InvalidAmount;
 import Exceptions.MaxBalance;
 import Exceptions.MaxWithdraw;
-
+import java.awt.Font;
+import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.io.Serializable;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.SwingConstants;
-import java.awt.Font;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.io.Serializable;
-import java.awt.event.ActionEvent;
-import Data.FileIO;
-import java.awt.SystemColor;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
+@SuppressWarnings("unused")
 public class WithdrawAcc extends JFrame implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
+	private final JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
 
@@ -71,76 +69,66 @@ public class WithdrawAcc extends JFrame implements Serializable {
 		contentPane.add(lblAmount);
 		
 		JButton btnDeposit = new JButton("Withdraw");
-		btnDeposit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			
-				String aacountNum;
-				double amt;
-				aacountNum=textField.getText();
-				amt=Double.parseDouble(textField_1.getText());
-					try {
-						int a=JOptionPane.showConfirmDialog(getComponent(0), "Confirm?");
-						if(a==0)
-						{
-							
-							FileIO.bank.withdraw(aacountNum, amt);
-							JOptionPane.showMessageDialog(getComponent(0),"Withdraw Successful");
-							dispose();
-						}
-						else
-						{
-						textField.setText(null);
-						textField_1.setText(null);
-						
-						}
-						
-					} catch (MaxBalance e1) {
-						JOptionPane.showMessageDialog(getComponent(0), "Insufficient Balance");
-						JOptionPane.showMessageDialog(getComponent(0),"Failed");
-						textField.setText(null);
-						textField_1.setText(null);
-				
-					} catch (AccNotFound e1) {
-						JOptionPane.showMessageDialog(getComponent(0), "Sorry! Account Not Found");
-						JOptionPane.showMessageDialog(getComponent(0),"Failed");
-						textField.setText(null);
-						textField_1.setText(null);
-					
-					} catch (MaxWithdraw e1) {
-						JOptionPane.showMessageDialog(getComponent(0), "Maximum Withdraw Limit Exceed");
-						JOptionPane.showMessageDialog(getComponent(0),"Failed");
-						textField.setText(null);
-						textField_1.setText(null);
-						
-					} catch (InvalidAmount e1) {
-						JOptionPane.showMessageDialog(getComponent(0), "Invalid Amount");
-						JOptionPane.showMessageDialog(getComponent(0),"Failed");
-						textField.setText(null);
-						textField_1.setText(null);
-					}
-				
-				
-					textField.setText(null);
-					textField_1.setText(null);
-				
-				
-				
-
-			}
-		});
+		btnDeposit.addActionListener((ActionEvent e) -> {
+                    String aacountNum;
+                    double amt;
+                    aacountNum=textField.getText();
+                    amt=Double.parseDouble(textField_1.getText());
+                    try {
+                        int a=JOptionPane.showConfirmDialog(getComponent(0), "Confirm?");
+                        if(a==0)
+                        {
+                            
+                            FileIO.bank.withdraw(aacountNum, amt);
+                            JOptionPane.showMessageDialog(getComponent(0),"Withdraw Successful");
+                            dispose();
+                        }
+                        else
+                        {
+                            textField.setText(null);
+                            textField_1.setText(null);
+                            
+                        }
+                        
+                    } catch (MaxBalance e1) {
+                        JOptionPane.showMessageDialog(getComponent(0), "Insufficient Balance");
+                        JOptionPane.showMessageDialog(getComponent(0),"Failed");
+                        textField.setText(null);
+                        textField_1.setText(null);
+                        
+                    } catch (AccNotFound e1) {
+                        JOptionPane.showMessageDialog(getComponent(0), "Sorry! Account Not Found");
+                        JOptionPane.showMessageDialog(getComponent(0),"Failed");
+                        textField.setText(null);
+                        textField_1.setText(null);
+                        
+                    } catch (MaxWithdraw e1) {
+                        JOptionPane.showMessageDialog(getComponent(0), "Maximum Withdraw Limit Exceed");
+                        JOptionPane.showMessageDialog(getComponent(0),"Failed");
+                        textField.setText(null);
+                        textField_1.setText(null);
+                        
+                    } catch (InvalidAmount e1) {
+                        JOptionPane.showMessageDialog(getComponent(0), "Invalid Amount");
+                        JOptionPane.showMessageDialog(getComponent(0),"Failed");
+                        textField.setText(null);
+                        textField_1.setText(null);
+                    }
+                    
+                    
+                    textField.setText(null);
+                    textField_1.setText(null);
+                });
 		btnDeposit.setBounds(73, 212, 89, 23);
 		contentPane.add(btnDeposit);
 		
 		JButton btnReset = new JButton("Reset");
 		btnReset.setBounds(243, 212, 89, 23);
 		contentPane.add(btnReset);
-		btnReset.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			
-				textField.setText(null);
-				textField_1.setText(null);
-			}
-		});
+		btnReset.addActionListener((ActionEvent e) -> {
+                    textField.setText(null);
+                    textField_1.setText(null);
+                });
 		
 		
 		

@@ -1,22 +1,16 @@
 package GUI;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
 import Data.FileIO;
-
+import java.awt.Font;
+import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import java.awt.Font;
-import java.awt.Image;
-
-import javax.swing.JButton;
+import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.SystemColor;
-import javax.swing.ImageIcon;
-import javax.swing.Icon;
+import javax.swing.border.EmptyBorder;
 
 public class Menu extends JFrame {
 
@@ -24,7 +18,7 @@ public class Menu extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
+	private final JPanel contentPane;
 
 	/**
 	 * Create the frame.
@@ -67,86 +61,67 @@ public class Menu extends JFrame {
 //		contentPane.add(btnAddAccount);
 		
 		JButton btnDepositToAccount = new JButton("Deposit To Account");
-		btnDepositToAccount.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(!GUIForm.depositacc.isVisible())
-				{
-					GUIForm.depositacc.setVisible(true);
-				}
-				else
-				{
-					JOptionPane.showMessageDialog(getComponent(0), "Already Opened", "Warning", 0);
-				}
-				
-			}
-		});
+		btnDepositToAccount.addActionListener((ActionEvent e) -> {
+                    if(!GUIForm.depositacc.isVisible())
+                    {
+                        GUIForm.depositacc.setVisible(true);
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(getComponent(0), "Already Opened", "Warning", 0);
+                    }
+                });
 		btnDepositToAccount.setBounds(217, 213, 194, 33);
 		contentPane.add(btnDepositToAccount);
 		
 		JButton btnWithdrawFromAccount = new JButton("Withdraw From Account");
-		btnWithdrawFromAccount.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(!GUIForm.withdraw.isVisible())
-				{
-					GUIForm.withdraw.setVisible(true);
-				}
-				else
-				{
-					JOptionPane.showMessageDialog(getComponent(0), "Already Opened", "Warning", 0);
-				}
-				
-				
-			}
-			
-		});
+		btnWithdrawFromAccount.addActionListener((ActionEvent e) -> {
+                    if(!GUIForm.withdraw.isVisible())
+                    {
+                        GUIForm.withdraw.setVisible(true);
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(getComponent(0), "Already Opened", "Warning", 0);
+                    }
+                });
 		btnWithdrawFromAccount.setBounds(217, 256, 194, 33);
 		contentPane.add(btnWithdrawFromAccount);
 		
 		JButton btnDisplayAccountList = new JButton("Display Account List");
-		btnDisplayAccountList.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			
-				if(!GUIForm.displaylist.isVisible())
-				{
-					GUIForm.displaylist.setVisible(true);
-				}
-				else
-				{
-					JOptionPane.showMessageDialog(getComponent(0), "Already Opened", "Warning", 0);
-				}
-				
-			}
-		});
+		btnDisplayAccountList.addActionListener((ActionEvent e) -> {
+                    if(!GUIForm.displaylist.isVisible())
+                    {
+                        GUIForm.displaylist.setVisible(true);
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(getComponent(0), "Already Opened", "Warning", 0);
+                    }
+                });
 		btnDisplayAccountList.setBounds(217, 300, 194, 32);
 		contentPane.add(btnDisplayAccountList);
 		
 		JButton btnExit = new JButton("Exit");
-		btnExit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(getComponent(0), "Thanks For Using") ;
-				FileIO.Write();
-				System.exit(0);
-			}
-		});
+		btnExit.addActionListener((ActionEvent arg0) -> {
+                    JOptionPane.showMessageDialog(getComponent(0), "Thanks For Using") ;
+                    FileIO.Write();
+                    System.exit(0);
+                });
 		btnExit.setBounds(217, 343, 194, 33);
 		contentPane.add(btnExit);
 		
 		JButton btnNewButton = new JButton("Add Account");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			if(!GUIForm.addaccount.isVisible())
-			{
-				GUIForm.addaccount.setVisible(true);
-			}
-			else
-			{
-				JOptionPane.showMessageDialog(getComponent(0), "Already Opened", "Warning", 0);
-			}
-				
-				
-			}
-			
-		});
+		btnNewButton.addActionListener((ActionEvent e) -> {
+                    if(!GUIForm.addaccount.isVisible())
+                    {
+                        GUIForm.addaccount.setVisible(true);
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(getComponent(0), "Already Opened", "Warning", 0);
+                    }
+                });
 		btnNewButton.setBounds(217, 166, 194, 36);
 		contentPane.add(btnNewButton);
 		
@@ -154,8 +129,7 @@ public class Menu extends JFrame {
 		lblNewLabel.setIcon(new ImageIcon(Menu.class.getResource("/img/1.png")));
 		lblNewLabel.setBounds(397, 166, 216, 213);
 		contentPane.add(lblNewLabel);
+            //Image image=GenerateImage.toImage(true);  //this generates an image file
 		
-		//Image image=GenerateImage.toImage(true);  //this generates an image file
-		ImageIcon icon = new ImageIcon("1.png");
 	}
 }

@@ -1,30 +1,28 @@
 package GUI;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
+import Data.FileIO;
 import Exceptions.AccNotFound;
 import Exceptions.InvalidAmount;
-
+import java.awt.Font;
+import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.io.Serializable;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.SwingConstants;
-import java.awt.Font;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.io.Serializable;
-import java.awt.event.ActionEvent;
-import Data.FileIO;
-import java.awt.SystemColor;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
+@SuppressWarnings("unused")
 public class DepositAcc extends JFrame implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
+	private final JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
 
@@ -69,55 +67,52 @@ public class DepositAcc extends JFrame implements Serializable {
 		contentPane.add(lblAmount);
 		
 		JButton btnDeposit = new JButton("Deposit");
-		btnDeposit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//FileIO file=new FileIO();
-				//Bank bank =file.Read();
-				String aacountNum;
-				double amt;
-				aacountNum=textField.getText();
-				amt=Double.parseDouble(textField_1.getText());
-				int a=JOptionPane.showConfirmDialog(getComponent(0), "Confirm?");
-				if(a==0)
-				{
-				try {
-					
-						
-						FileIO.bank.deposit(aacountNum, amt);
-						JOptionPane.showMessageDialog(getComponent(0),"Deposit Successful");
-						dispose();
-					
-						textField.setText(null);
-						textField_1.setText(null);
-					
-				} 
-				catch (InvalidAmount e1) {
-					JOptionPane.showMessageDialog(getComponent(0), "Sorry! Deposit Amount is Invalid");
-					
-				} catch (AccNotFound e1) {
-					JOptionPane.showMessageDialog(getComponent(0), "Sorry! Account is Not Found");
-					
-				}
-				finally
-				{
-					//file.Write(bank);
-					textField.setText(null);
-					textField_1.setText(null);
-				}
-				
-					
-				}
-				else
-				{
-					textField.setText(null);
-					textField_1.setText(null);
-				}
-				
-					
-					
-				
-			}
-		});
+		btnDeposit.addActionListener((ActionEvent e) -> {
+                    //FileIO file=new FileIO();
+                    //Bank bank =file.Read();
+                    String aacountNum;
+                    double amt;
+                    aacountNum=textField.getText();
+                    amt=Double.parseDouble(textField_1.getText());
+                    int a=JOptionPane.showConfirmDialog(getComponent(0), "Confirm?");
+                    if(a==0)
+                    {
+                        try {
+                            
+                            
+                            FileIO.bank.deposit(aacountNum, amt);
+                            JOptionPane.showMessageDialog(getComponent(0),"Deposit Successful");
+                            dispose();
+                            
+                            textField.setText(null);
+                            textField_1.setText(null);
+                            
+                        }
+                        catch (InvalidAmount e1) {
+                            JOptionPane.showMessageDialog(getComponent(0), "Sorry! Deposit Amount is Invalid");
+                            
+                        } catch (AccNotFound e1) {
+                            JOptionPane.showMessageDialog(getComponent(0), "Sorry! Account is Not Found");
+                            
+                        } catch (Exception e1) {
+                            // TODO Auto-generated catch block
+
+												}
+                        finally
+                        {
+                            //file.Write(bank);
+                            textField.setText(null);
+                            textField_1.setText(null);
+                        }
+                        
+                        
+                    }
+                    else
+                    {
+                        textField.setText(null);
+                        textField_1.setText(null);
+                    }
+                });
 		btnDeposit.setBounds(73, 212, 89, 23);
 		contentPane.add(btnDeposit);
 		
@@ -125,12 +120,9 @@ public class DepositAcc extends JFrame implements Serializable {
 		btnReset.setBounds(243, 212, 89, 23);
 		contentPane.add(btnReset);
 		
-		btnReset.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			
-				textField.setText(null);
-				textField_1.setText(null);
-			}
-		});
+		btnReset.addActionListener((ActionEvent e) -> {
+                    textField.setText(null);
+                    textField_1.setText(null);
+                });
 	}
 }

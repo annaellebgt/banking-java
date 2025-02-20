@@ -1,17 +1,15 @@
 package GUI;
+import Data.FileIO;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.SwingConstants;
-import java.awt.Font;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import Data.FileIO;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
 public class AddSavingsAccount extends JFrame {
 
@@ -19,7 +17,7 @@ public class AddSavingsAccount extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
+	private final JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -73,68 +71,58 @@ public class AddSavingsAccount extends JFrame {
 		contentPane.add(textField_2);
 		
 		JButton btnAdd = new JButton("Add");
-		btnAdd.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
+		btnAdd.addActionListener((ActionEvent e) -> {
 //				FileIO file=new FileIO();
-				//Bank bank =file.Read();
-				String name=textField.getText();
-				double bal=Double.parseDouble(textField_1.getText());
-				double maxw=Double.parseDouble(textField_2.getText());
-				if(bal<2000)
-				{
-					JOptionPane.showMessageDialog(getComponent(0), "Minimum Limit 5000", "Warning", 0);
-					textField.setText(null);
-					textField_1.setText(null);
-					textField_2.setText(null);
-				}
-				else
-				{
-				if(name==null||bal<=0||maxw<=0)
-				{
-					JOptionPane.showMessageDialog(getComponent(0),"Typing Mismatch!! Try Again");
-					textField.setText(null);
-					textField_1.setText(null);
-					textField_2.setText(null);
-				}
-				else
-				{
-				int ch=JOptionPane.showConfirmDialog(getComponent(0), "Confirm?");
-				if(ch==0)
-				{
-					int index = FileIO.bank.addAccount(name, bal, maxw);
-					DisplayList.arr.addElement(FileIO.bank.getAccounts()[index].toString());
-					//file.Write(FileIO.bank);
-					JOptionPane.showMessageDialog(getComponent(0),"Added Successfully");
-					dispose();
-				}
-				else 
-				{
-					JOptionPane.showMessageDialog(getComponent(0),"Failed");
-					textField.setText(null);
-					textField_1.setText(null);
-					textField_2.setText(null);
-				}
-				textField.setText(null);
-				textField_1.setText(null);
-				textField_2.setText(null);
-				
-				}
-				}
-			}
-		});
+                    //Bank bank =file.Read();
+                    String name1 = textField.getText();
+                    double bal=Double.parseDouble(textField_1.getText());
+                    double maxw=Double.parseDouble(textField_2.getText());
+                    if (bal<2000) {
+                        JOptionPane.showMessageDialog(getComponent(0), "Minimum Limit 5000", "Warning", 0);
+                        textField.setText(null);
+                        textField_1.setText(null);
+                        textField_2.setText(null);
+                    } else {
+                        if (name1 == null || bal<=0 || maxw<=0) {
+                            JOptionPane.showMessageDialog(getComponent(0),"Typing Mismatch!! Try Again");
+                            textField.setText(null);
+                            textField_1.setText(null);
+                            textField_2.setText(null);
+                        } else {
+                            int ch=JOptionPane.showConfirmDialog(getComponent(0), "Confirm?");
+                            if (ch==0) {
+                                int index = 0;
+								try {
+									index = FileIO.bank.addAccount(name1, bal, maxw);
+								} catch (Exception e1) {
+                                    // TODO Auto-generated catch block
+
+								}
+                                DisplayList.arr.addElement(FileIO.bank.getAccounts()[index].toString());
+                                //file.Write(FileIO.bank);
+                                JOptionPane.showMessageDialog(getComponent(0),"Added Successfully");
+                                dispose();
+                            } else {
+                                JOptionPane.showMessageDialog(getComponent(0),"Failed");
+                                textField.setText(null);
+                                textField_1.setText(null);
+                                textField_2.setText(null);
+                            }
+                            textField.setText(null);
+                            textField_1.setText(null);
+                            textField_2.setText(null);
+                        }
+                    }
+                });
 		btnAdd.setBounds(86, 209, 89, 23);
 		contentPane.add(btnAdd);
 		
 		JButton btnReset = new JButton("Reset");
-		btnReset.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				textField.setText(null);
-				textField_1.setText(null);
-				textField_2.setText(null);
-			
-			}
-		});
+		btnReset.addActionListener((ActionEvent e) -> {
+                    textField.setText(null);
+                    textField_1.setText(null);
+                    textField_2.setText(null);
+                });
 		btnReset.setBounds(309, 209, 89, 23);
 		contentPane.add(btnReset);
 	}
