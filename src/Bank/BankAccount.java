@@ -23,7 +23,7 @@ public class BankAccount implements Serializable {
     }
     this.name = name;
     this.balance = balance;
-    this.min_balance = min_balance + 10000;
+    this.min_balance = min_balance;
     this.acc_num = 10000 + (int) (Math.random() * 89999) + "";
 }
 

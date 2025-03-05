@@ -28,7 +28,7 @@ public class Bank implements Serializable {
 	
 	public int addAccount(String name, double balance, double maxWithLimit )
 	{
-		SavingsAccount acc=new SavingsAccount(name, balance, maxWithLimit);
+		SavingsAccount acc = new SavingsAccount(name, balance, maxWithLimit);
 		return this.addAccount(acc);
 	}
 	
@@ -47,6 +47,7 @@ public class Bank implements Serializable {
 	public BankAccount findAccount(String aacountNum)
 	{
 		int i;
+		System.out.println("Dummy print inside findAccount")
 		for(i=0;i<100;i++)
 		{
 			if(getAccounts()[i]==null)
