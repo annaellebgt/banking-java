@@ -47,8 +47,8 @@ public class Bank implements Serializable {
 	public BankAccount findAccount(String aacountNum)
 	{
 		int i;
-		System.out.println("Dummy print inside findAccount")
-		for(i=0;i<100;i++)
+		System.out.println("Dummy print inside findAccount");
+		for(i=0;i<100000;i++)
 		{
 			if(getAccounts()[i]==null)
 			{
