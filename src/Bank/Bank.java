@@ -47,7 +47,7 @@ public class Bank implements Serializable {
 	public BankAccount findAccount(String aacountNum)
 	{
 		int i;
-		for(i=0;i<100;i++)
+		for(i=0;i<2000;i++)
 		{
 			if(getAccounts()[i]==null)
 			{
