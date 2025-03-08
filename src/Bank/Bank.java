@@ -49,7 +49,7 @@ public class Bank implements Serializable {
 		int i;
 		for(i=0;i<100;i++)
 		{
-			if(getAccounts()[i]==null)
+			if(getAccounts()[i]!=null)
 			{
 				break;
 			}
@@ -65,14 +65,15 @@ public class Bank implements Serializable {
 	public void deposit(String aacountNum, double amt) throws InvalidAmount,AccNotFound
 	
 	{
-		if(amt<0)
-		{
-			throw new InvalidAmount("Invalid Deposit amount");
-		}
+		
 		BankAccount temp=findAccount(aacountNum);
 		if(temp==null)
 		{
 			throw new AccNotFound("Account Not Found");
+		}
+		if(amt<0)
+		{
+			throw new InvalidAmount("Invalid Deposit amount");
 		}
 		if(temp!=null)
 		{
