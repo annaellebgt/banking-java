@@ -40,8 +40,7 @@ public class AddCurrentAccount extends JFrame {
 		
 		JLabel lblAddCurrentAccount = new JLabel("Add Current Account ");
 		lblAddCurrentAccount.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblAddCurrentAccount.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAddCurrentAccount.setBounds(10, 11, 414, 34);
+		lblAddCurrentAccount.setBounds(50, 20, 414, 34);
 		contentPane.add(lblAddCurrentAccount);
 		
 		JLabel lblName = new JLabel("Name:");
@@ -65,14 +64,14 @@ public class AddCurrentAccount extends JFrame {
 		contentPane.add(textField_1);
 		
 		JLabel lblMaximumWithdrawLimit = new JLabel("Trade Licence Number:");
-		lblMaximumWithdrawLimit.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblMaximumWithdrawLimit.setFont(new Font("Johana", Font.PLAIN, 11));
 		lblMaximumWithdrawLimit.setBounds(10, 163, 135, 14);
 		contentPane.add(lblMaximumWithdrawLimit);
 		
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
 		textField_2.setBounds(144, 160, 254, 20);
-		contentPane.add(textField_2);
+		contentPane.add(textField_1);
 		
 		JButton btnAdd = new JButton("Add");
 		btnAdd.addActionListener(new ActionListener() {
@@ -81,7 +80,9 @@ public class AddCurrentAccount extends JFrame {
 				//Bank bank=file.Read();
 				String name=textField.getText();
 				double bal=Double.parseDouble(textField_1.getText());
-				String trlic=textField_2.getText();
+				String trlic = textField_2.getText();
+				String trlic1 = textField_1.getText();
+
 				if(bal<5000)
 				{
 					JOptionPane.showMessageDialog(getComponent(0), "Minimum Limit 5000", "Warning", 0);
@@ -91,7 +92,7 @@ public class AddCurrentAccount extends JFrame {
 				}
 				else
 				{
-				if(name==null||bal<=0||trlic==null)
+				if(name==null||bal<=0||trlic==null|trlic1==null)
 				{
 					JOptionPane.showMessageDialog(getComponent(0),"Typing Mismatch!! Try Again");
 					textField.setText(null);

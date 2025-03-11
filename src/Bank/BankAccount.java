@@ -46,7 +46,7 @@ public class BankAccount implements Serializable {
 		
 		else
 		{
-			throw new MaxBalance("Insufficient Balance");
+			throw new MaxBalance("You have an insufficient Balance");
 		}
 	}
 	
@@ -57,6 +57,6 @@ public class BankAccount implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "Name: " + name + ", Id: " + acc_num + ", Balance: " + balance +"Type:"+this.getClass();
+		return "Name : " + name + ", Id : " + acc_num + ", Balance : " + balance +"Type :"+this.getClass();
 	}
 }
