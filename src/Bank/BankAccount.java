@@ -57,6 +57,6 @@ public class BankAccount implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "Name: " + name + ", Id: " + acc_num + ", Balance: " + balance +"Type:"+this.getClass();
+		return "Name : " + name + ", Id : " + acc_num + ", Balance : " + balance +"Type :"+this.getClass();
 	}
 }
