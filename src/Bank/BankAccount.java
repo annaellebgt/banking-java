@@ -46,7 +46,7 @@ public class BankAccount implements Serializable {
 		
 		else
 		{
-			throw new MaxBalance("Insufficient Balance");
+			throw new MaxBalance("You have an insufficient Balance");
 		}
 	}
 	
