@@ -1,5 +1,7 @@
 package Bank;
 import java.io.Serializable;
+import java.util.Arrays;
+
 import javax.swing.DefaultListModel;
 import Exceptions.AccNotFound;
 import Exceptions.InvalidAmount;
@@ -143,7 +145,7 @@ public class Bank implements Serializable {
 	}
 
 	public BankAccount[] getAccounts() {
-		return accounts;
+		return Arrays.copyOf(accounts, accounts.length);
 	}
 
 	public void setAccounts(BankAccount[] accounts) {
