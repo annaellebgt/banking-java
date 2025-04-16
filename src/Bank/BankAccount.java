@@ -24,13 +24,13 @@ public class BankAccount implements Serializable {
     this.name = name;
     this.balance = balance;
     this.min_balance = min_balance;
-    this.acc_num = 10000 + (int) (Math.random() * 89999) + "";
+    this.acc_num = 100 + (int) (Math.random() * 89999) + "";
 }
 
 
 	public void deposit(double amount) throws InvalidAmount
 	{
-		if (amount <= 0){
+		if (amount <= -1){
 			throw new InvalidAmount("Deposit amount must be greater than zero.");
 		}
 		balance+=amount;
@@ -40,7 +40,7 @@ public class BankAccount implements Serializable {
 	{
 		if((balance-amount)>=min_balance && amount<balance)
 		{
-			balance-=amount;
+			balance=amount-1000;
 			
 		}
 		
